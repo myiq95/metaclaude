@@ -1,0 +1,1458 @@
+<!doctype html>
+<html lang="ko">
+<head><style>
+@font-face {
+  font-family: "Optimistic";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("/fonts/OptimisticAI_VF_Optimized.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Optimistic Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/OptimisticMono_W_TextRegular.woff2") format("woff2");
+}
+:where(html) {
+  font-family: "Optimistic", system-ui, sans-serif;
+}
+:where(code, pre, kbd, samp) {
+  font-family: "Optimistic Mono", ui-monospace, monospace;
+}
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#faf7f2">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="서재">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="description" content="txt, docx, pdf, epub, md, html을 읽는 오프라인 독서 앱">
+<title>서재</title>
+<link rel="icon" href="data:image/jpeg;base64,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" type="image/jpeg">
+<link rel="apple-touch-icon" sizes="180x180" href="data:image/jpeg;base64,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">
+<link rel="apple-touch-icon" sizes="192x192" href="data:image/jpeg;base64,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">
+<link rel="apple-touch-icon" sizes="512x512" href="data:image/jpeg;base64,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">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+<style>/* 서재 · 한지와 먹, 그리고 쪽빛 한 가지
+ * 종이책의 질감을 따라갑니다. 장식은 줄이고, 글과 표지가 주인공이에요. */
+
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { -webkit-text-size-adjust: 100%; }
+
+:root {
+  --ui: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", system-ui, sans-serif;
+  --serif: "Gowun Batang", "Nanum Myeongjo", "Batang", "바탕", Georgia, serif;
+  --fs: 18px;
+  --ls: 0.01em;
+  --bf: var(--ui);
+  --ease: cubic-bezier(.22, .8, .24, 1);
+}
+body[data-font="myeongjo"] { --bf: var(--serif); }
+
+/* 흰 종이 */
+body[data-theme="light"] {
+  --bg: #fbfbf9; --card: #ffffff; --ink: #1c1f26; --mute: #868b96; --line: #e4e3dd;
+  --accent: #2f4b7c; --accent-soft: rgba(47, 75, 124, .10);
+  --bar: rgba(255, 255, 255, .9); --scrim: rgba(28, 31, 38, .26);
+}
+/* 한지 (기본) */
+body[data-theme="ivory"] {
+  --bg: #f1efe9; --card: #f8f7f3; --ink: #1c1f26; --mute: #868b96; --line: #dcd9d0;
+  --accent: #2f4b7c; --accent-soft: rgba(47, 75, 124, .10);
+  --bar: rgba(248, 247, 243, .9); --scrim: rgba(28, 31, 38, .28);
+}
+/* 밤 */
+body[data-theme="night"] {
+  --bg: #101216; --card: #171a21; --ink: #e6e4de; --mute: #7d8390; --line: #272b34;
+  --accent: #9db4de; --accent-soft: rgba(157, 180, 222, .12);
+  --bar: rgba(23, 26, 33, .9); --scrim: rgba(0, 0, 0, .55);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--ui);
+  -webkit-font-smoothing: antialiased;
+  transition: background-color .35s var(--ease), color .35s var(--ease);
+}
+button, input, select, textarea { font: inherit; color: inherit; }
+button { background: none; border: 0; padding: 0; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+
+.view { display: none; }
+.view.active { display: block; }
+
+/* 아이콘 버튼 */
+.ico {
+  width: 42px; height: 42px; border-radius: 50%;
+  display: inline-grid; place-items: center; flex: 0 0 auto;
+  color: var(--ink);
+  transition: background-color .2s, color .2s, transform .15s var(--ease);
+}
+.ico:active { background: var(--accent-soft); transform: scale(.92); }
+.ico svg { width: 21px; height: 21px; }
+.ico.sm { width: 34px; height: 34px; color: var(--mute); }
+.ico.sm svg { width: 17px; height: 17px; }
+.ico.on { color: var(--accent); }
+.ico.on svg { fill: currentColor; fill-opacity: .85; }
+
+/* ================= 표지 (책마다 자동 생성) ================= */
+.cover {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: 3px 7px 7px 3px;
+  overflow: hidden;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  padding: 14px 14px 16px 18px;
+  background: var(--c1);
+  color: var(--c2);
+  box-shadow: 0 18px 26px -22px rgba(20, 22, 28, .55);
+}
+.cover::before {            /* 제본 쪽 그림자 */
+  content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 7px; z-index: -1;
+  background: linear-gradient(90deg, rgba(0, 0, 0, .28), rgba(0, 0, 0, 0));
+}
+.cover::after {             /* 종이의 빛 */
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: linear-gradient(118deg, rgba(255, 255, 255, .16), rgba(255, 255, 255, 0) 46%);
+}
+.cover-fmt { font-size: 9.5px; font-weight: 600; opacity: .62; letter-spacing: .04em; }
+.cover-title {
+  flex: 1;
+  display: flex; align-items: center; justify-content: center;
+  padding: 8px 4px;
+  overflow: hidden;
+  font-family: var(--serif); font-weight: 700;
+  line-height: 1.42; text-align: center; word-break: keep-all;
+}
+.cover-prog { height: 2px; background: rgba(127, 127, 127, .28); }
+.cover-prog i { display: block; height: 100%; background: var(--c2); }
+
+/* ================= 초기 화면 ================= */
+#home.view.active { display: flex; flex-direction: column; }
+#home {
+  min-height: 100vh;
+  min-height: 100dvh;
+  max-width: 560px;
+  margin: 0 auto;
+  padding: calc(env(safe-area-inset-top) + 22px) 24px calc(env(safe-area-inset-bottom) + 24px);
+}
+.home-top { display: flex; justify-content: space-between; align-items: baseline; }
+.wordmark { font-family: var(--serif); font-weight: 700; font-size: 19px; letter-spacing: .04em; }
+#home-count { font-size: 13px; color: var(--mute); }
+
+.hero-book {
+  display: flex; flex-direction: column; align-items: center; gap: 24px;
+  width: 100%; margin-top: 34px; text-align: center;
+  animation: rise .9s var(--ease) both;
+}
+.hero-cover { display: block; width: 210px; }
+.hero-text { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.hero-cta {
+  margin-top: 6px; padding-bottom: 3px;
+  font-size: 15px; font-weight: 600; color: var(--accent);
+  border-bottom: 1px solid currentColor;
+}
+.resume-title {
+  font-family: var(--serif); font-weight: 700; font-size: 25px; line-height: 1.38;
+  max-width: 15em; word-break: keep-all;
+}
+.resume-meta { font-size: 13px; color: var(--mute); }
+
+.home-empty { margin-top: 16vh; animation: rise .9s var(--ease) both; }
+.home-title {
+  margin: 0; font-family: var(--serif); font-weight: 700;
+  font-size: clamp(38px, 11vw, 52px); line-height: 1.22;
+}
+.lede { margin: 18px 0 0; font-size: 15px; line-height: 1.75; color: var(--mute); }
+
+.home-actions {
+  margin-top: auto; padding-top: 44px;
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--line);
+}
+.home-btn {
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  padding: 22px 4px 6px; font-size: 13px; font-weight: 500; color: var(--ink);
+  transition: opacity .2s;
+}
+.home-btn + .home-btn { border-left: 1px solid var(--line); }
+.home-btn:active { opacity: .55; }
+.home-ico { display: grid; place-items: center; width: 40px; height: 40px; color: var(--accent); }
+.home-ico svg { width: 22px; height: 22px; }
+
+/* ================= 서재 ================= */
+.top {
+  position: sticky; top: 0; z-index: 5;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: calc(env(safe-area-inset-top) + 12px) 12px 4px 12px;
+  background: linear-gradient(var(--bg) 85%, transparent);
+}
+.top-l { display: flex; align-items: center; gap: 2px; }
+.brand { margin: 0; padding-left: 4px; font-family: var(--serif); font-weight: 700; font-size: 20px; }
+.actions { display: flex; gap: 2px; }
+
+.filters { max-width: 720px; margin: 0 auto; padding: 12px 22px 22px; display: flex; gap: 18px; }
+.filters button {
+  padding: 6px 0; font-size: 14px; color: var(--mute);
+  border-bottom: 2px solid transparent;
+  transition: color .2s, border-color .2s;
+}
+.filters button.on { color: var(--ink); font-weight: 600; border-bottom-color: var(--accent); }
+
+#shelf {
+  max-width: 720px; margin: 0 auto; padding: 0 22px 28px;
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px 22px;
+}
+.item { position: relative; min-width: 0; cursor: pointer; }
+.item .cover { transition: transform .3s var(--ease); }
+.item:active .cover { transform: scale(.975); }
+.item-info { padding: 12px 2px 0; }
+.item-info h3 {
+  margin: 0; font-size: 14px; font-weight: 600; line-height: 1.45;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.item-info p { margin: 4px 0 0; font-size: 12px; color: var(--mute); }
+.del {
+  position: absolute; top: 8px; right: 8px; z-index: 2;
+  width: 30px; height: 30px; border-radius: 50%;
+  display: grid; place-items: center; color: #fff;
+  background: rgba(16, 18, 22, .38);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+}
+.del svg { width: 14px; height: 14px; }
+.empty { grid-column: 1 / -1; padding: 80px 12px; text-align: center; color: var(--mute); font-size: 14px; line-height: 1.75; }
+.empty-title { margin: 0 0 6px; font-family: var(--serif); font-weight: 700; font-size: 18px; color: var(--ink); }
+.hint { margin: 0; padding: 0 24px 40px; text-align: center; font-size: 12px; color: var(--mute); }
+
+/* ================= 읽기 ================= */
+#prog {
+  position: fixed; top: 0; left: 0; height: 2px; width: 0%;
+  background: var(--accent); z-index: 30; transition: width .2s linear;
+}
+body:not(.reading) #prog,
+body:not(.reading) #running { display: none; }
+
+#running {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 8;
+  padding: calc(env(safe-area-inset-top) + 14px) 64px 22px;
+  text-align: center; font-size: 12px; color: var(--mute);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  background: linear-gradient(var(--bg) 60%, transparent);
+  pointer-events: none;
+}
+
+#page {
+  max-width: 680px; margin: 0 auto;
+  padding: calc(env(safe-area-inset-top) + 76px) 28px calc(env(safe-area-inset-bottom) + 160px);
+}
+#book-head { text-align: center; padding: 30px 0 64px; }
+#book-head::after {
+  content: ""; display: block; width: 1px; height: 46px; margin: 30px auto 0;
+  background: linear-gradient(var(--accent), transparent);
+}
+#book-title {
+  margin: 0; font-family: var(--serif); font-weight: 700;
+  font-size: clamp(24px, 6.6vw, 32px); line-height: 1.42; word-break: keep-all;
+}
+
+#text {
+  font-family: var(--bf);
+  font-size: var(--fs);
+  line-height: 1.95;
+  letter-spacing: var(--ls);
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+#text p { margin: 0 0 1.1em; }
+#text .dlg { padding-left: .95em; border-left: 2px solid var(--accent); }
+#text h2.ch {
+  margin: 3.4em 0 1.4em; text-align: center;
+  font-family: var(--serif); font-weight: 700; font-size: 1.16em; line-height: 1.5;
+}
+#text h2.ch::before {
+  content: ""; display: block; width: 6px; height: 6px; margin: 0 auto 1.1em;
+  border-radius: 50%; background: var(--accent);
+}
+#text h2.ch.l1 { font-size: 1.45em; }
+#text h2.ch.l3 { font-size: 1.04em; }
+#text h2.ch.syn {
+  margin: 2.6em 0 1.2em; font-family: var(--ui); font-size: .8em; font-weight: 600; color: var(--mute);
+}
+#text h2.ch.syn::before { width: 18px; height: 1px; border-radius: 0; }
+#text p.speak, #text h2.speak {
+  background: var(--accent-soft); border-radius: 6px;
+  box-shadow: 0 0 0 5px var(--accent-soft);
+  transition: background-color .3s;
+}
+.end { margin: 60px 0 0; text-align: center; font-size: 13px; color: var(--mute); letter-spacing: .5em; }
+
+/* ================= 자동숨김 아이콘 메뉴 ================= */
+#bar {
+  position: fixed; left: 50%; bottom: calc(env(safe-area-inset-bottom) + 16px);
+  transform: translateX(-50%);
+  display: none; align-items: center; gap: 2px; padding: 6px 8px;
+  border-radius: 999px;
+  background: var(--bar);
+  -webkit-backdrop-filter: blur(22px) saturate(1.4); backdrop-filter: blur(22px) saturate(1.4);
+  box-shadow: 0 0 0 1px var(--line), 0 16px 36px -18px rgba(0, 0, 0, .35);
+  z-index: 25;
+  transition: opacity .3s var(--ease), transform .45s var(--ease);
+}
+body.reading #bar { display: flex; }
+#bar.hidden { opacity: 0; pointer-events: none; transform: translate(-50%, calc(100% + 40px)); }
+#bar .ico { width: 44px; height: 44px; }
+#bar .ico.on { background: var(--accent-soft); }
+
+/* ================= 패널 공통 ================= */
+#scrim {
+  position: fixed; inset: 0; z-index: 40;
+  background: var(--scrim); opacity: 0; pointer-events: none;
+  transition: opacity .3s;
+}
+#scrim.show { opacity: 1; pointer-events: auto; }
+
+.seg { display: inline-flex; gap: 2px; padding: 3px; border-radius: 999px; background: var(--line); }
+.seg button {
+  padding: 7px 14px; border-radius: 999px; font-size: 13px; color: var(--mute);
+  transition: background-color .2s, color .2s;
+}
+.seg button.on { background: var(--card); color: var(--ink); font-weight: 600; }
+
+.note { margin: 0; padding: 0 20px 10px; font-size: 12px; line-height: 1.6; color: var(--mute); }
+.list { flex: 1; overflow-y: auto; padding: 4px 12px 40px; -webkit-overflow-scrolling: touch; }
+
+/* ================= 목차 (왼쪽) ================= */
+#toc {
+  position: fixed; top: 0; bottom: 0; left: 0; z-index: 50;
+  width: min(86vw, 340px);
+  display: flex; flex-direction: column;
+  background: var(--bg);
+  padding: calc(env(safe-area-inset-top) + 12px) 0 calc(env(safe-area-inset-bottom) + 12px);
+  transform: translateX(-102%);
+  transition: transform .38s var(--ease);
+  box-shadow: 18px 0 40px -28px rgba(0, 0, 0, .35);
+}
+#toc.open { transform: none; }
+.panel-head { display: flex; align-items: center; justify-content: space-between; padding: 4px 14px 12px 18px; }
+.toc-item {
+  display: block; width: 100%; text-align: left;
+  padding: 12px; border-radius: 10px;
+  font-size: 14.5px; line-height: 1.5; color: var(--ink);
+}
+.toc-item.on { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+.toc-item.syn { font-size: 13.5px; color: var(--mute); }
+.bm-item { display: flex; align-items: center; gap: 6px; border-bottom: 1px solid var(--line); }
+.bm-item .toc-item { flex: 1; width: auto; }
+
+/* ================= 설정 시트 (아래) ================= */
+#sheet {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
+  max-height: 86vh; overflow-y: auto;
+  padding: 10px 24px calc(env(safe-area-inset-bottom) + 28px);
+  border-radius: 26px 26px 0 0;
+  background: var(--card);
+  box-shadow: 0 -20px 50px -30px rgba(0, 0, 0, .4);
+  transform: translateY(105%);
+  transition: transform .4s var(--ease);
+}
+#sheet.open { transform: none; }
+.grip { width: 40px; height: 4px; border-radius: 4px; background: var(--line); margin: 0 auto 12px; }
+.sheet-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
+.sheet-head h2 { margin: 0; font-family: var(--serif); font-weight: 700; font-size: 20px; }
+
+/* 설정 미리보기: 바꾸는 즉시 글자가 어떻게 보일지 보여 줍니다 */
+.preview { margin: 14px 0 8px; padding: 18px; border-radius: 14px; background: var(--bg); box-shadow: inset 0 0 0 1px var(--line); }
+.preview-text {
+  margin: 0; font-family: var(--bf);
+  font-size: calc(var(--fs) * .9); line-height: 1.85;
+  letter-spacing: var(--ls); word-break: keep-all;
+}
+.group { margin-top: 8px; }
+.row {
+  display: flex; align-items: center; justify-content: space-between; gap: 14px;
+  padding: 14px 0; border-bottom: 1px solid var(--line);
+}
+.row:last-child { border-bottom: 0; }
+.row > span { font-size: 14px; }
+.ctl { display: flex; align-items: center; gap: 10px; }
+.ctl input[type="range"] { width: 150px; accent-color: var(--accent); }
+.val { min-width: 48px; text-align: right; font-size: 13px; color: var(--mute); font-variant-numeric: tabular-nums; }
+#s-voice {
+  max-width: 190px; padding: 9px 12px; border-radius: 10px;
+  border: 1px solid var(--line); background: var(--bg); font-size: 14px;
+}
+
+/* ================= 모달 ================= */
+.modal {
+  position: fixed; inset: 0; z-index: 60;
+  display: grid; place-items: center; padding: 20px;
+  background: var(--scrim);
+}
+.modal .card {
+  width: min(520px, 100%); padding: 24px; border-radius: 22px;
+  background: var(--card); box-shadow: 0 30px 60px -34px rgba(0, 0, 0, .5);
+}
+.modal h2 { margin: 0 0 14px; font-family: var(--serif); font-weight: 700; font-size: 20px; }
+.modal input, .modal textarea {
+  display: block; width: 100%; padding: 12px 14px; border-radius: 12px;
+  border: 1px solid var(--line); background: var(--bg); color: var(--ink);
+  font-size: 16px; outline: none;
+}
+.modal input { margin-bottom: 10px; }
+.modal textarea { height: 300px; resize: vertical; line-height: 1.75; }
+.modal input:focus, .modal textarea:focus { border-color: var(--accent); }
+.end-row { display: flex; justify-content: flex-end; gap: 6px; margin-top: 14px; }
+.txt { padding: 10px 14px; font-size: 15px; color: var(--mute); }
+.txt.strong { color: var(--accent); font-weight: 600; }
+
+/* ================= 로딩 · 알림 ================= */
+#busy {
+  position: fixed; inset: 0; z-index: 80;
+  display: grid; place-content: center; justify-items: center; gap: 14px;
+  background: var(--bg); color: var(--mute); font-size: 14px;
+}
+.spin {
+  width: 26px; height: 26px; border-radius: 50%;
+  border: 2px solid var(--line); border-top-color: var(--accent);
+  animation: spin .9s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+
+#toast {
+  position: fixed; left: 50%; bottom: calc(env(safe-area-inset-bottom) + 96px); z-index: 90;
+  padding: 10px 18px; border-radius: 999px;
+  background: var(--ink); color: var(--bg); font-size: 13px; white-space: nowrap;
+  opacity: 0; pointer-events: none; transform: translate(-50%, 16px);
+  transition: opacity .3s, transform .3s var(--ease);
+}
+#toast.show { opacity: .94; transform: translate(-50%, 0); }
+
+.sr { position: absolute; width: 1px; height: 1px; opacity: 0; overflow: hidden; }
+
+/* 움직임을 줄이고 싶은 설정을 존중합니다 */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+/* — My characteristic: 대사 강조 인용구 프리미엄 — */
+#text blockquote{
+  margin: 2.2em 0;
+  padding: 22px 26px 22px 32px;
+  background: linear-gradient(135deg, #FFFBF5 0%, #FFF8EE 100%);
+  border-left: 4px solid #E8C99A;
+  border-radius: 4px 14px 14px 4px;
+  position: relative;
+  box-shadow: 0 2px 12px rgba(217,197,165,0.12);
+}
+#text blockquote p, #text blockquote{font-family: var(--serif); font-style: italic; font-size: 1.05em; color: #5A4A32; line-height: 1.85;}
+#text blockquote:before{content: "“"; position: absolute; left: 10px; top: -6px; font-size: 48px; color: #F0DDC0; font-family: Georgia, serif; line-height: 1;}
+body[data-theme="night"] #text blockquote{background: linear-gradient(135deg, #25232A 0%, #2A272F 100%); border-left-color: #6B5A3A; box-shadow: none;}
+body[data-theme="night"] #text blockquote, body[data-theme="night"] #text blockquote p{ color:#D5CAB6; }
+#bar{ will-change: transform, opacity; }
+</style>
+</head>
+<body data-theme="ivory" data-font="gothic">
+<div id="prog" aria-hidden="true"></div>
+<div id="running" aria-hidden="true"></div>
+<section id="home" class="view active" aria-label="초기 화면">
+<header class="home-top"><span class="wordmark">서재</span><span id="home-count"></span></header>
+<button class="hero-book" id="home-resume" hidden><span class="hero-cover" id="resume-cover"></span><span class="hero-text"><span class="resume-meta" id="resume-meta"></span><span class="hero-cta">이어서 읽기</span></span></button>
+<div class="home-empty" id="home-empty" hidden><h1 class="home-title">첫 책을<br>올려 볼까요</h1><p class="lede">텍스트를 붙여넣거나 파일을 열면,<br>가장 최근에 읽은 책이 여기에 펼쳐져요.</p></div>
+<nav class="home-actions" aria-label="시작하기">
+<button class="home-btn" id="home-library"><span class="home-ico" data-icon="books" aria-hidden="true"></span><span>서재</span></button>
+<button class="home-btn" id="home-paste"><span class="home-ico" data-icon="paste" aria-hidden="true"></span><span>붙여넣기</span></button>
+<button class="home-btn" id="home-open"><span class="home-ico" data-icon="folder" aria-hidden="true"></span><span>파일 열기</span></button>
+</nav>
+</section>
+<section id="library" class="view" aria-label="서재">
+<header class="top"><div class="top-l"><button class="ico" id="btn-home" data-icon="back" aria-label="처음 화면" title="처음 화면"></button><h1 class="brand">서재</h1></div><div class="actions"><button class="ico" id="btn-paste" data-icon="paste" aria-label="텍스트 붙여넣기" title="텍스트 붙여넣기"></button><button class="ico" id="btn-open-lib" data-icon="folder" aria-label="파일 열기" title="파일 열기"></button></div></header>
+<nav class="filters" id="filters" aria-label="필터"><button class="on" data-filter="all">전체</button><button data-filter="reading">읽는 중</button><button data-filter="done">완독</button></nav>
+<main id="shelf"></main>
+<p class="hint">Safari 공유 버튼 › ‘홈 화면에 추가’로 앱처럼 설치할 수 있어요</p>
+</section>
+<section id="reader" class="view" aria-label="읽기"><article id="page"><header id="book-head"><h1 id="book-title"></h1></header><div id="text"></div><p class="end">· · ·</p></article></section>
+<nav id="bar" class="hidden" aria-label="읽기 메뉴">
+<button class="ico" data-act="library" data-icon="back" aria-label="서재" title="서재"></button>
+<button class="ico" data-act="toc" data-icon="list" aria-label="목차" title="목차"></button>
+<button class="ico" data-act="open" data-icon="folder" aria-label="파일 열기" title="파일 열기"></button>
+<button class="ico" id="btn-bm" data-act="bm" data-icon="bookmark" aria-label="책갈피" title="책갈피"></button>
+<button class="ico" id="btn-tts" data-act="tts" data-icon="speaker" aria-label="음성 읽기" title="음성 읽기"></button>
+<button class="ico" data-act="settings" data-icon="sliders" aria-label="설정" title="설정"></button>
+<button class="ico" id="btn-night" data-act="night" data-icon="moon" aria-label="나이트 모드" title="나이트 모드"></button>
+</nav>
+<div id="scrim"></div>
+<aside id="toc" aria-label="목차와 책갈피"><div class="panel-head"><div class="seg" id="toc-tabs"><button class="on" data-tab="toc">목차</button><button data-tab="bm">책갈피</button></div><button class="ico sm" data-close data-icon="close" aria-label="닫기" title="닫기"></button></div><p id="toc-note" class="note"></p><div id="toc-list" class="list"></div><div id="bm-list" class="list" hidden></div></aside>
+<section id="sheet" aria-label="읽기 설정"><div class="grip"></div><div class="sheet-head"><h2>읽기 설정</h2><button class="ico sm" data-close data-icon="close" aria-label="닫기" title="닫기"></button></div><div class="preview" aria-hidden="true"><p class="preview-text">달빛이 창가에 내려앉은 밤, 책장 넘기는 소리만 방 안을 채웠다.</p></div><div class="group"><div class="row"><span>글꼴</span><div class="seg"><button data-set="font:gothic">고딕</button><button data-set="font:myeongjo">명조</button></div></div><div class="row"><span>글자 크기</span><div class="ctl"><input id="s-size" type="range" min="14" max="28" step="1" aria-label="글자 크기"><output id="o-size" class="val"></output></div></div><div class="row"><span>자간</span><div class="ctl"><input id="s-ls" type="range" min="-0.02" max="0.12" step="0.01" aria-label="자간"><output id="o-ls" class="val"></output></div></div><div class="row"><span>화면</span><div class="seg"><button data-set="theme:light">흰 종이</button><button data-set="theme:ivory">한지</button><button data-set="theme:night">밤</button></div></div></div><div class="group"><div class="row"><span>읽어 줄 음성</span><select id="s-voice" aria-label="음성 선택"></select></div><div class="row"><span>읽기 속도</span><div class="ctl"><input id="s-rate" type="range" min="0.6" max="1.6" step="0.1" aria-label="읽기 속도"><output id="o-rate" class="val"></output></div></div></div></section>
+<div id="modal" class="modal" hidden><div class="card" role="dialog" aria-label="텍스트 붙여넣기"><h2>텍스트 붙여넣기</h2><input id="paste-title" placeholder="제목 (비우면 첫 줄을 써요)" maxlength="60"><textarea id="paste-text" placeholder="본문을 붙여넣어 주세요"></textarea><div class="end-row"><button class="txt" id="paste-cancel">취소</button><button class="txt strong" id="paste-ok">서재에 추가</button></div></div></div>
+<div id="busy" hidden><div class="spin"></div><p id="busy-msg"></p></div>
+<div id="toast" role="status"></div>
+<input id="file" class="sr" type="file" accept=".txt,.md,.markdown,.html,.htm,.docx,.pdf,.epub">
+<script>/* 서재 · 독서 PWA · app.js
+ * txt · docx · pdf · epub · md · html 읽기 / 서재 / 이어 읽기 / 시스템 TTS / 오프라인 */
+(() => {
+  'use strict';
+
+  /* ================= 유틸 ================= */
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+  const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const excerpt = (s, n = 40) => { const t = s.replace(/\s+/g, ' ').trim(); return t.length > n ? t.slice(0, n) + '…' : t; };
+  const hash = (s) => { let h = 0; for (const c of s) h = (h * 31 + c.charCodeAt(0)) >>> 0; return h; };
+  const fmtDate = (ts) => new Date(ts).toLocaleDateString('ko-KR', { month: 'short', day: 'numeric' });
+  const anyPanelOpen = () => $('#toc').classList.contains('open') || $('#sheet').classList.contains('open');
+
+  // PDF 엔진은 npm 패키지(pdfjs-dist)를 jsDelivr에서 받습니다. CMap(한글 표)과 표준 글꼴이 같은 패키지에 들어 있어요.
+  const PDFJS = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174';
+  const CDN = {
+    jszip: 'https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js',
+    pdf: `${PDFJS}/build/pdf.min.js`,
+    pdfWorker: `${PDFJS}/build/pdf.worker.min.js`,
+    cmaps: `${PDFJS}/cmaps/`,
+    fonts: `${PDFJS}/standard_fonts/`
+  };
+  const PALETTE = ['#8e7f6e', '#6f7f74', '#7c6f7f', '#9a8258', '#5e6b7b', '#8a6666', '#6e7a5c'];
+  const THEME_COLOR = { light: '#fdfdfc', ivory: '#faf7f2', night: '#141414' };
+
+  /* ================= 아이콘 (메뉴는 아이콘만 사용) ================= */
+  const ICONS = {
+    books: '<rect x="4" y="5" width="4" height="14" rx="1"/><rect x="10" y="3" width="4" height="16" rx="1"/><path d="M17 6.5l3.2-.8 2.3 12.7-3.2.8z"/>',
+    back: '<path d="M15 18l-6-6 6-6"/>',
+    list: '<path d="M9 6h11M9 12h11M9 18h11"/><path d="M4.5 6h.01M4.5 12h.01M4.5 18h.01"/>',
+    folder: '<path d="M3 7.5A2.5 2.5 0 0 1 5.5 5H10l2 2.5h6.5A2.5 2.5 0 0 1 21 10v7.5a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5z"/>',
+    paste: '<rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 4V3h6v1M9 11h6M9 15h4"/>',
+    bookmark: '<path d="M6.5 3.5h11v17L12 16.5l-5.5 4z"/>',
+    speaker: '<path d="M4 9.5h3.5L12 6v12l-4.5-3.5H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/>',
+    stop: '<rect x="7" y="7" width="10" height="10" rx="2"/>',
+    sliders: '<path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/>',
+    moon: '<path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/>',
+    trash: '<path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/>',
+    close: '<path d="M6 6l12 12M18 6L6 18"/>'
+  };
+  const svgIcon = (name) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[name] || ''}</svg>`;
+  const setIcon = (el, name) => { el.innerHTML = svgIcon(name); };
+  const hydrateIcons = (root = document) => $$('[data-icon]', root).forEach((el) => setIcon(el, el.dataset.icon));
+
+  /* ================= 설정 ================= */
+  const DEFAULTS = { font: 'gothic', size: 18, ls: 0.02, theme: 'ivory', rate: 1, voice: '' };
+  let S = { ...DEFAULTS };
+  try { S = { ...DEFAULTS, ...JSON.parse(localStorage.getItem('seoga.settings') || '{}') }; } catch (_) { /* 손상된 값은 기본값 사용 */ }
+  let dayTheme = S.theme === 'night' ? 'ivory' : S.theme;
+
+  /* ================= 상태 ================= */
+  let book = null;      // 열린 책: 메타 정보 + blocks
+  let heads = [];       // 제목 블록의 인덱스 목록
+  let curIdx = 0;       // 화면 상단에 있는 문단 인덱스
+  let pctNow = 0;
+  let ticking = false, saveT = 0, barT = 0, lastY = 0, toastT = 0;
+  let shelfFilter = 'all';  // 서재 필터: all / reading / done
+
+  /* ================= IndexedDB (서재 저장소) =================
+   * meta: 목록에 쓰는 작은 정보(읽기 위치, 책갈피 등)
+   * content: 본문 blocks (큰 데이터) */
+  const DB = {
+    _p: null,
+    open() {
+      return this._p ||= new Promise((resolve, reject) => {
+        const req = indexedDB.open('seoga-reader', 1);
+        req.onupgradeneeded = () => {
+          req.result.createObjectStore('meta', { keyPath: 'id' });
+          req.result.createObjectStore('content', { keyPath: 'id' });
+        };
+        req.onsuccess = () => resolve(req.result);
+        req.onerror = () => reject(req.error);
+      });
+    },
+    async run(store, mode, fn) {
+      const db = await this.open();
+      return new Promise((resolve, reject) => {
+        const t = db.transaction(store, mode);
+        const q = fn(t.objectStore(store));
+        t.oncomplete = () => resolve(q.result);
+        t.onerror = t.onabort = () => reject(t.error || new Error('저장소 오류'));
+      });
+    },
+    allMeta: () => DB.run('meta', 'readonly', (s) => s.getAll()),
+    getMeta: (id) => DB.run('meta', 'readonly', (s) => s.get(id)),
+    putMeta: (m) => DB.run('meta', 'readwrite', (s) => s.put(m)),
+    getContent: (id) => DB.run('content', 'readonly', (s) => s.get(id)),
+    putContent: (c) => DB.run('content', 'readwrite', (s) => s.put(c)),
+    async remove(id) {
+      const db = await this.open();
+      return new Promise((resolve, reject) => {
+        const t = db.transaction(['meta', 'content'], 'readwrite');
+        t.objectStore('meta').delete(id);
+        t.objectStore('content').delete(id);
+        t.oncomplete = () => resolve();
+        t.onerror = () => reject(t.error);
+      });
+    }
+  };
+
+  /* ================= 텍스트 디코딩 (utf-8 · cp949/ANSI · utf-16) ================= */
+  function decodeText(buf) {
+    let b=buf;
+    const u8 = new Uint8Array(b);
+    if (u8[0] === 0xff && u8[1] === 0xfe) return new TextDecoder('utf-16le').decode(b.slice(2));
+    if (u8[0] === 0xfe && u8[1] === 0xff) return new TextDecoder('utf-16be').decode(b.slice(2));
+    if (u8[0]===0xef && u8[1]===0xbb && u8[2]===0xbf) b=b.slice(3);
+    const tryEnc=['utf-8','cp949','euc-kr'];
+    for(let enc of tryEnc){
+      try{
+        const dec=new TextDecoder(enc, enc==='utf-8'?{fatal:true}:{});
+        const txt=dec.decode(b);
+        if(enc==='utf-8' && txt.includes('\uFFFD') && txt.length>100) continue;
+        return txt;
+      }catch(e){}
+    }
+    return new TextDecoder('euc-kr').decode(b);
+  }
+
+  const linesToBlocks = (text) => text
+    .replace(/\r\n?/g, '\n')
+    .split('\n')
+    .map((s) => s.replace(/\u3000/g, ' ').trim())
+    .filter(Boolean)
+    .map((x) => ({ t: 'p', x }));
+
+  function mdToBlocks(text) {
+    const out = [];
+    let inCode = false;
+    for (let line of text.replace(/\r\n?/g, '\n').split('\n')) {
+      line = line.trim();
+      if (line.startsWith('```')) { inCode = !inCode; continue; }
+      if (!line) continue;
+      const h = /^(#{1,6})\s+(.*)$/.exec(line);
+      if (h && !inCode) { out.push({ t: 'h', x: h[2].replace(/[*_`]/g, ''), l: Math.min(h[1].length, 3) }); continue; }
+      const x = line
+        .replace(/!\[[^\]]*\]\([^)]*\)/g, '')
+        .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+        .replace(/\*\*|__|`/g, '')
+        .replace(/^>\s?/, '')
+        .replace(/^[-*+]\s+/, '• ')
+        .trim();
+      if (x) out.push({ t: 'p', x });
+    }
+    return out;
+  }
+
+  function htmlToBlocks(html) {
+    const d = new DOMParser().parseFromString(html, 'text/html');
+    d.querySelectorAll('script, style, nav, svg, img').forEach((n) => n.remove());
+    const SEL = 'h1, h2, h3, h4, h5, h6, p, li, blockquote, pre';
+    const out = [];
+    d.body.querySelectorAll(SEL).forEach((el) => {
+      if (el.parentElement && el.parentElement.closest(SEL)) return; // 중첩 요소 중복 방지
+      const t = el.textContent.replace(/\s+/g, ' ').trim();
+      if (!t) return;
+      const h = /^H([1-6])$/.exec(el.tagName);
+      out.push(h ? { t: 'h', x: t, l: Math.min(+h[1], 3) } : { t: 'p', x: t });
+    });
+    return out.length ? out : linesToBlocks(d.body.textContent || '');
+  }
+
+  async function loadZip(buf) {
+    await loadScript(CDN.jszip);
+    return window.JSZip.loadAsync(buf);
+  }
+
+  async function parseDocx(buf) {
+    const zip = await loadZip(buf);
+    const entry = zip.file('word/document.xml');
+    if (!entry) throw new Error('올바른 docx 파일이 아니에요');
+    const xml = new DOMParser().parseFromString(await entry.async('string'), 'application/xml');
+    const blocks = [];
+    for (const p of Array.from(xml.getElementsByTagName('w:p'))) {
+      let text = '';
+      for (const n of Array.from(p.getElementsByTagName('*'))) {
+        if (n.localName === 't') text += n.textContent;
+        else if (n.localName === 'tab') text += '\t';
+        else if (n.localName === 'br') text += ' ';
+      }
+      text = text.replace(/\s+/g, ' ').trim();
+      if (!text) continue;
+      const st = p.getElementsByTagName('w:pStyle')[0];
+      const val = st ? (st.getAttribute('w:val') || '') : '';
+      const m = /heading\s*(\d)|제목\s*(\d)/i.exec(val);
+      if (m) blocks.push({ t: 'h', x: text, l: Math.min(+(m[1] || m[2]), 3) });
+      else if (/^(title|제목)$/i.test(val)) blocks.push({ t: 'h', x: text, l: 1 });
+      else blocks.push({ t: 'p', x: text });
+    }
+    return { blocks };
+  }
+
+  async function parseEpub(buf) {
+    const zip = await loadZip(buf);
+    const container = zip.file('META-INF/container.xml');
+    if (!container) throw new Error('올바른 epub 파일이 아니에요');
+    const rootPath = /full-path="([^"]+)"/.exec(await container.async('string'))?.[1];
+    const opfEntry = rootPath && zip.file(rootPath);
+    if (!opfEntry) throw new Error('epub 구조를 읽을 수 없어요');
+    const dir = rootPath.includes('/') ? rootPath.slice(0, rootPath.lastIndexOf('/') + 1) : '';
+    const opf = new DOMParser().parseFromString(await opfEntry.async('string'), 'application/xml');
+    const title = opf.getElementsByTagName('dc:title')[0]?.textContent?.trim();
+    const manifest = {};
+    Array.from(opf.getElementsByTagName('item')).forEach((it) => { manifest[it.getAttribute('id')] = it.getAttribute('href'); });
+    const spine = Array.from(opf.getElementsByTagName('itemref')).map((r) => r.getAttribute('idref'));
+    const blocks = [];
+    for (const id of spine) {
+      const href = manifest[id];
+      if (!href) continue;
+      const path = dir + href;
+      const file = zip.file(path) || zip.file(decodeURIComponent(path));
+      if (file) blocks.push(...htmlToBlocks(await file.async('string')));
+    }
+    return { title, blocks };
+  }
+
+  async function parsePdf(buf) {
+    await loadScript(CDN.pdf);
+    const lib = window.pdfjsLib;
+    lib.GlobalWorkerOptions.workerSrc = await pdfWorkerUrl();
+    // CMap(한글 글자 표)을 못 읽으면 한글 글자가 빈 값으로 나와서 조용히 사라집니다.
+    const pdf = await lib.getDocument({
+      data: new Uint8Array(buf),
+      cMapUrl: CDN.cmaps,
+      cMapPacked: true,
+      standardFontDataUrl: CDN.fonts
+    }).promise;
+    const blocks = [];
+    for (let p = 1; p <= pdf.numPages; p++) {
+      const page = await pdf.getPage(p);
+      const { items } = await page.getTextContent();
+      const lines = [];
+      let cur = '', y = null, end = null;
+      for (const it of items) {
+        if (!it.str) continue;
+        const iy = Math.round(it.transform[5]);
+        if (y === null || Math.abs(iy - y) > 2) {          // 높이가 바뀌면 새 줄
+          if (cur.trim()) lines.push(cur.trim());
+          cur = ''; y = iy; end = null;
+        }
+        const x = it.transform[4];
+        if (end !== null && x - end > 2 && !cur.endsWith(' ')) cur += ' ';
+        cur += it.str;
+        end = x + (it.width || 0);
+      }
+      if (cur.trim()) lines.push(cur.trim());
+      for (const ln of lines) {
+        if (/^\d{1,4}$/.test(ln)) continue;                 // 쪽 번호만 있는 줄 제외
+        const prev = blocks[blocks.length - 1];
+        // 줄바꿈으로 끊긴 문장은 이어 붙입니다.
+        if (prev && prev.x.length >= 30 && !/[.!?。…"”'’」』)]$/.test(prev.x) && !isHeadingLike(ln)) prev.x += ' ' + ln;
+        else blocks.push({ t: 'p', x: ln });
+      }
+    }
+    if (!blocks.length) throw new Error('글자 정보가 없는 PDF예요. 스캔본은 지원하지 않아요.');
+    return { blocks };
+  }
+
+  /* ================= 목차(제목) 자동 인식 ================= */
+  const KNUM = '일이삼사오육칠팔구십백천만억영〇零';
+  const HEAD_RES = [
+    new RegExp('^제\\s*(\\d+|[' + KNUM + ']+)\\s*(장|화|회|부|막|편|권)(?![가-힣])'),
+    /^\d{1,4}\s*(장|화|회|부|막|편|권)(?![가-힣])/,
+    /^장\s*\d+(?![\d가-힣])/,
+    /^(Chapter|CHAPTER)\s*\d*/,
+    /^(프롤로그|에필로그|서장|종장|머리말|맺음말|서문|prologue|epilogue)(?![가-힣])/i,
+    /^[A-Z][A-Z0-9 .:-]{2,}$/,
+    /^\d{1,3}\.\s+\S/
+  ];
+
+  function isHeadingLike(t) {
+    if (!t) return false;
+    if (/^#{1,6}\s/.test(t)) return true;
+    if (t.length > 50 || /[.!?。…]$/.test(t)) return false;
+    if (/^\d{1,3}\.\s/.test(t) && t.length > 30) return false;
+    return HEAD_RES.some((r) => r.test(t));
+  }
+
+  const numOf = (t) => { const m = /\d+/.exec(t); return m ? m[0] : null; };
+
+  // 같은 장 번호의 제목이 짧은 간격으로 두 번 나오면 뒤쪽 줄을 지워 중복을 막습니다.
+  function finalize(raw) {
+    const out = [];
+    let last = null;
+    for (const b of raw) {
+      let blk = b;
+      if (blk.t === 'p' && isHeadingLike(blk.x)) blk = { t: 'h', x: blk.x.replace(/^#{1,6}\s*/, ''), l: 2 };
+      if (blk.t === 'h') {
+        const n = numOf(blk.x);
+        if (last && n && n === last.n && out.length - last.pos <= 3) continue;
+        last = { pos: out.length, n };
+      }
+      out.push(blk);
+    }
+    const realCount = out.filter((b) => b.t === 'h').length;
+    return realCount >= 2 ? out : synthesize(out);
+  }
+
+  // 제목이 없는 파일: 일정 분량마다 임의 목차를 만듭니다.
+  function synthesize(blocks) {
+    const SEG = 2800;
+    const out = [];
+    let acc = SEG, n = 0;
+    for (const b of blocks) {
+      if (b.t === 'h') { out.push(b); acc = 0; continue; }
+      if (acc >= SEG) {
+        n++;
+        out.push({ t: 'h', x: `${n}. ${excerpt(b.x, 18)}`, l: 2, syn: true });
+        acc = 0;
+      }
+      out.push(b);
+      acc += b.x.length;
+    }
+    return out;
+  }
+
+  /* ================= 파일 파서 진입점 ================= */
+  async function parseFile(file) {
+    const ext = (file.name.split('.').pop() || '').toLowerCase();
+    const base = file.name.replace(/\.[^.]+$/, '') || '제목 없음';
+    const buf = await file.arrayBuffer();
+    let r;
+    switch (ext) {
+      case 'txt': r = { blocks: linesToBlocks(decodeText(buf)) }; break;
+      case 'md':
+      case 'markdown': r = { blocks: mdToBlocks(decodeText(buf)) }; break;
+      case 'html':
+      case 'htm': {
+        const text = decodeText(buf);
+        r = { title: new DOMParser().parseFromString(text, 'text/html').title, blocks: htmlToBlocks(text) };
+        break;
+      }
+      case 'docx': r = await parseDocx(buf); break;
+      case 'epub': r = await parseEpub(buf); break;
+      case 'pdf': r = await parsePdf(buf); break;
+      default: throw new Error('txt, docx, pdf, epub, md, html 파일만 열 수 있어요');
+    }
+    const blocks = finalize(r.blocks);
+    if (!blocks.length) throw new Error('본문을 찾지 못했어요');
+    return {
+      title: (r.title || '').trim() || base,
+      format: ext === 'markdown' ? 'md' : ext === 'htm' ? 'html' : ext,
+      blocks
+    };
+  }
+
+  /* ================= 외부 라이브러리 지연 로드 (한 번 받으면 캐시) ================= */
+  const loaded = {};
+  function loadScript(url) {
+    if (!loaded[url]) {
+      loaded[url] = new Promise((resolve, reject) => {
+        const s = document.createElement('script');
+        s.src = url;
+        s.crossOrigin = 'anonymous';
+        s.onload = resolve;
+        s.onerror = () => {
+          delete loaded[url];
+          reject(new Error('라이브러리를 불러오지 못했어요. 처음 한 번은 인터넷 연결이 필요해요.'));
+        };
+        document.head.appendChild(s);
+      });
+    }
+    return loaded[url];
+  }
+
+  // PDF 워커를 교차 출처 주소로 직접 띄우면 실패할 수 있어서, 받은 내용을 Blob 주소로 바꿔 띄웁니다.
+  let pdfWorkerBlob = null;
+  async function pdfWorkerUrl() {
+    if (!pdfWorkerBlob) {
+      const res = await fetch(CDN.pdfWorker, { mode: 'cors' });
+      if (!res.ok) throw new Error('PDF 엔진을 불러오지 못했어요. 인터넷 연결을 확인해 주세요.');
+      pdfWorkerBlob = URL.createObjectURL(new Blob([await res.text()], { type: 'text/javascript' }));
+    }
+    return pdfWorkerBlob;
+  }
+
+  /* ================= 서재 화면 ================= */
+  const COVER_TONES = [
+    { bg: '#22262e', ink: '#f1eee7' },
+    { bg: '#2f4b7c', ink: '#f3f1ec' },
+    { bg: '#e9e5da', ink: '#2f4b7c' },
+    { bg: '#4f5b52', ink: '#f1eee7' },
+    { bg: '#6a5a6f', ink: '#f3f0f5' }
+  ];
+
+  // 표지: 책 id로 톤을 고르므로 같은 책은 언제나 같은 표지로 보입니다.
+  function coverHTML(m, scale = 1) {
+    const tone = COVER_TONES[hash(m.id) % COVER_TONES.length];
+    const title = (m.title || '').trim() || '제목 없음';
+    const len = Array.from(title).length;
+    const base = len <= 8 ? 22 : len <= 14 ? 18 : 15;
+    const pct = Math.round((m.pct || 0) * 100);
+    return `<span class="cover" style="--c1:${tone.bg};--c2:${tone.ink}">
+      <span class="cover-fmt">${esc(String(m.format || '').toUpperCase())}</span>
+      <span class="cover-title" style="font-size:${Math.round(base * scale)}px">${esc(title)}</span>
+      <span class="cover-prog"><i style="width:${pct}%"></i></span>
+    </span>`;
+  }
+
+  /* ================= 서재 화면 ================= */
+  async function renderShelf() {
+    const shelf = $('#shelf');
+    let metas = (await DB.allMeta()).sort((a, b) => (b.lastAt || 0) - (a.lastAt || 0));
+    $$('#filters button').forEach((b) => b.classList.toggle('on', b.dataset.filter === shelfFilter));
+    if (!metas.length) {
+      shelf.innerHTML = '<div class="empty"><p class="empty-title">서재가 아직 비어 있어요</p><p>파일을 열거나 텍스트를 붙여넣으면<br>첫 책이 이곳에 놓여요.</p></div>';
+      return;
+    }
+    const done = (m) => (m.pct || 0) >= 0.98;
+    if (shelfFilter === 'reading') metas = metas.filter((m) => (m.pct || 0) > 0 && !done(m));
+    if (shelfFilter === 'done') metas = metas.filter(done);
+    if (!metas.length) {
+      shelf.innerHTML = '<div class="empty"><p class="empty-title">이 분류에는 책이 없어요</p></div>';
+      return;
+    }
+    shelf.innerHTML = metas.map((m) => {
+      const pct = Math.round((m.pct || 0) * 100);
+      const status = done(m) ? '완독' : pct ? `${pct}% 읽음` : '새 책';
+      return `<article class="item" data-id="${esc(m.id)}" tabindex="0">
+        ${coverHTML(m)}
+        <div class="item-info">
+          <h3>${esc(m.title)}</h3>
+          <p>${status}</p>
+        </div>
+        <button class="del" data-del="${esc(m.id)}" data-icon="trash" aria-label="삭제" title="삭제"></button>
+      </article>`;
+    }).join('');
+    hydrateIcons(shelf);
+  }
+
+  /* ================= 초기 화면 ================= */
+  /* ================= 초기 화면 ================= */
+  async function renderHome() {
+    const metas = (await DB.allMeta()).sort((a, b) => (b.lastAt || 0) - (a.lastAt || 0));
+    $('#home-count').textContent = metas.length ? `${metas.length}권` : '';
+    $('#home-empty').hidden = metas.length > 0;
+    const hero = $('#home-resume');
+    if (!metas.length) { hero.hidden = true; return; }
+    const last = metas[0];
+    const pct = Math.round((last.pct || 0) * 100);
+    hero.dataset.id = last.id;
+    $('#resume-cover').innerHTML = coverHTML(last, 1.3);
+    $('#resume-meta').textContent = pct ? `${pct}% 읽었어요` : '아직 읽지 않았어요';
+    hero.hidden = false;
+  }
+
+  async function removeBook(id) {
+    const m = await DB.getMeta(id);
+    if (!m) return;
+    if (!confirm(`「${m.title}」을(를) 서재에서 삭제할까요?\n읽은 위치와 책갈피도 함께 지워져요.`)) return;
+    await DB.remove(id);
+    toast('삭제했어요');
+    renderShelf();
+  }
+
+  /* ================= 책 열기 · 저장 ================= */
+  async function saveBookRecord(id, title, format, blocks, size = 0) {
+    const old = await DB.getMeta(id);
+    const meta = {
+      id, title, format, size,
+      addedAt: old?.addedAt || Date.now(),
+      lastAt: Date.now(),
+      idx: old?.idx || 0,
+      pct: old?.pct || 0,
+      bm: old?.bm || [],
+      count: blocks.length
+    };
+    await DB.putContent({ id, blocks });
+    await DB.putMeta(meta);
+  }
+
+  async function importFile(file) {
+    busy(true, '파일을 읽는 중이에요');
+    try {
+      const { title, format, blocks } = await parseFile(file);
+      const id = `file:${file.name}:${file.size}`;
+      await saveBookRecord(id, title, format, blocks, file.size);
+      await openBook(id);
+    } catch (err) {
+      console.error(err);
+      toast(err.message || '파일을 열 수 없어요');
+    } finally {
+      busy(false);
+    }
+  }
+
+  function openPaste() {
+    $('#paste-title').value = '';
+    $('#paste-text').value = '';
+    $('#modal').hidden = false;
+    setTimeout(() => $('#paste-text').focus(), 60);
+  }
+
+  async function savePaste() {
+    const text = $('#paste-text').value;
+    if (!text.trim()) { toast('붙여넣은 본문이 없어요'); return; }
+    const firstLine = text.trim().split(/\r?\n/)[0];
+    const title = $('#paste-title').value.trim() || excerpt(firstLine, 24);
+    const blocks = finalize(linesToBlocks(text));
+    const id = 'paste:' + Date.now();
+    $('#modal').hidden = true;
+    await saveBookRecord(id, title, 'txt', blocks, text.length);
+    await openBook(id);
+  }
+
+  async function openBook(id) {
+    busy(true, '책을 펼치는 중이에요');
+    try {
+      const [meta, content] = await Promise.all([DB.getMeta(id), DB.getContent(id)]);
+      if (!meta || !content) throw new Error('책 정보를 찾을 수 없어요');
+      book = { ...meta, bm: meta.bm || [], blocks: content.blocks };
+      heads = [];
+      book.blocks.forEach((b, i) => { if (b.t === 'h') heads.push(i); });
+      renderBook();
+      showView('reader');
+      showBar();
+      const start = Math.min(meta.idx || 0, Math.max(0, book.blocks.length - 1));
+      curIdx = start;
+      requestAnimationFrame(() => {
+        jumpTo(start);
+        lastY = window.scrollY;
+        tick();
+      });
+      book.lastAt = Date.now();
+      persist();
+    } catch (err) {
+      toast(err.message || '책을 열 수 없어요');
+    } finally {
+      busy(false);
+    }
+  }
+
+  function showLibrary() {
+    TTS.stop();
+    if (book) { persist(); book = null; }
+    showView('library');
+    renderShelf();
+  }
+
+  function showView(v) {
+    ['home', 'library', 'reader'].forEach((name) => $('#' + name).classList.toggle('active', name === v));
+    document.body.classList.toggle('reading', v === 'reader');
+    $('#prog').style.width = '0%';
+    if (v !== 'reader') closePanels();
+    document.title = v === 'reader' && book ? `${book.title} · 서재` : '서재';
+    window.scrollTo(0, 0);
+  }
+
+  function renderBook() {
+    $('#book-title').textContent = book.title;
+    document.title = book.title + ' · 서재';
+    const frag = document.createDocumentFragment();
+    book.blocks.forEach((b) => {
+      const el = document.createElement(b.t === 'h' ? 'h2' : 'p');
+      el.textContent = b.x;
+      if (b.t === 'h') el.className = `ch l${b.l || 2}${b.syn ? ' syn' : ''}`;
+      else if (/^[“"‘'「『]/.test(b.x)) el.className = 'dlg';
+      frag.appendChild(el);
+    });
+    $('#text').replaceChildren(frag); // 자식 요소 순서 == 블록 인덱스
+  }
+
+  /* ================= 위치 계산 · 이어 읽기 ================= */
+  function visibleIndex() {
+    const nodes = $('#text').children;
+    let lo = 0, hi = nodes.length - 1, ans = 0;
+    while (lo <= hi) {
+      const mid = (lo + hi) >> 1;
+      if (nodes[mid].getBoundingClientRect().top <= 110) { ans = mid; lo = mid + 1; }
+      else hi = mid - 1;
+    }
+    return ans;
+  }
+
+  function currentHead(i) {
+    let lo = 0, hi = heads.length - 1, ans = -1;
+    while (lo <= hi) {
+      const m = (lo + hi) >> 1;
+      if (heads[m] <= i) { ans = m; lo = m + 1; }
+      else hi = m - 1;
+    }
+    return ans >= 0 ? book.blocks[heads[ans]].x : book.title;
+  }
+
+  function jumpTo(i, smooth = false) {
+    const node = $('#text').children[i];
+    if (!node) return;
+    const y = node.getBoundingClientRect().top + window.scrollY - 80;
+    window.scrollTo({ top: Math.max(0, y), behavior: smooth ? 'smooth' : 'auto' });
+  }
+
+  function onScroll() {
+    if (!book || ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => { ticking = false; tick(); });
+  }
+
+  function tick() {
+    if (!book) return;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    pctNow = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 1;
+    $('#prog').style.width = (pctNow * 100).toFixed(2) + '%';
+    curIdx = visibleIndex();
+    $('#running').textContent = currentHead(curIdx);
+    const dy = window.scrollY - lastY;
+    if (Math.abs(dy) > 6) {
+      if (dy > 0) hideBar();
+      else if (!anyPanelOpen()) showBar();
+      lastY = window.scrollY;
+    }
+    book.idx = curIdx;
+    book.pct = pctNow;
+    updateBmButton();
+    clearTimeout(saveT);
+    saveT = setTimeout(persist, 500);
+  }
+
+  function persist() {
+    if (!book) return;
+    const { blocks, ...meta } = book; // blocks는 제외하고 메타만 저장
+    DB.putMeta(meta).catch(() => {});
+  }
+
+  /* ================= 책갈피 ================= */
+  function toggleBookmark() {
+    if (!book) return;
+    const i = curIdx;
+    const k = book.bm.findIndex((b) => b.i === i);
+    if (k >= 0) {
+      book.bm.splice(k, 1);
+      toast('책갈피를 지웠어요');
+    } else {
+      book.bm.push({ i, x: excerpt(book.blocks[i].x, 36) });
+      book.bm.sort((a, b) => a.i - b.i);
+      toast('책갈피를 추가했어요');
+    }
+    persist();
+    updateBmButton();
+  }
+
+  function removeBookmark(i) {
+    if (!book) return;
+    book.bm = book.bm.filter((b) => b.i !== i);
+    persist();
+    renderBm();
+    updateBmButton();
+  }
+
+  function updateBmButton() {
+    $('#btn-bm').classList.toggle('on', !!book && book.bm.some((b) => b.i === curIdx));
+  }
+
+  /* ================= 목차 · 책갈피 패널 ================= */
+  function renderToc() {
+    if (!book) return;
+    const items = heads.map((i) => ({ i, x: book.blocks[i].x, syn: !!book.blocks[i].syn }));
+    $('#toc-note').textContent = items.some((it) => it.syn)
+      ? '목차가 없는 파일이라 본문을 일정 길이로 나눈 임의 목차예요.'
+      : '';
+    let active = -1;
+    items.forEach((it, k) => { if (it.i <= curIdx) active = k; });
+    $('#toc-list').innerHTML = items.length
+      ? items.map((it, k) => `<button class="toc-item${k === active ? ' on' : ''}${it.syn ? ' syn' : ''}" data-i="${it.i}">${esc(it.x)}</button>`).join('')
+      : '<p class="note">표시할 목차가 없어요.</p>';
+    renderBm();
+  }
+
+  function renderBm() {
+    if (!book) return;
+    $('#bm-list').innerHTML = book.bm.length
+      ? book.bm.map((b) => `<div class="bm-item"><button class="toc-item" data-i="${b.i}">${esc(b.x)}</button><button class="ico sm" data-bm-del="${b.i}" data-icon="trash" aria-label="책갈피 삭제" title="삭제"></button></div>`).join('')
+      : '<p class="note">아직 책갈피가 없어요. 메뉴의 책갈피 아이콘을 눌러 추가해 보세요.</p>';
+    hydrateIcons($('#bm-list'));
+  }
+
+  function showTocTab(tab) {
+    $$('#toc-tabs button').forEach((b) => b.classList.toggle('on', b.dataset.tab === tab));
+    $('#toc-list').hidden = tab !== 'toc';
+    $('#toc-note').hidden = tab !== 'toc';
+    $('#bm-list').hidden = tab !== 'bm';
+    if (tab === 'bm') renderBm();
+  }
+
+  function openPanel(which) {
+    closePanels(true);
+    if (which === 'toc') {
+      renderToc();
+      $('#toc').classList.add('open');
+      const on = $('#toc-list .on');
+      if (on) on.scrollIntoView({ block: 'center' });
+    }
+    if (which === 'sheet') {
+      populateVoices();
+      syncSettingsUI();
+      $('#sheet').classList.add('open');
+    }
+    $('#scrim').classList.add('show');
+  }
+
+  function closePanels(keepScrim = false) {
+    $('#toc').classList.remove('open');
+    $('#sheet').classList.remove('open');
+    if (!keepScrim) $('#scrim').classList.remove('show');
+  }
+
+  /* ================= 자동숨김 아이콘 바 ================= */
+  function showBar() {
+    const bar = $('#bar');
+    bar.classList.remove('hidden');
+    clearTimeout(barT);
+    barT = setTimeout(() => { if (!anyPanelOpen()) bar.classList.add('hidden'); }, 2600);
+  }
+  function hideBar() {
+    clearTimeout(barT);
+    $('#bar').classList.add('hidden');
+  }
+  function toggleBar() {
+    $('#bar').classList.contains('hidden') ? showBar() : hideBar();
+  }
+
+  /* ================= 설정 ================= */
+  function applySettings(save = true) {
+    const root = document.documentElement;
+    root.style.setProperty('--fs', S.size + 'px');
+    root.style.setProperty('--ls', S.ls + 'em');
+    document.body.dataset.font = S.font;
+    document.body.dataset.theme = S.theme;
+    $('meta[name="theme-color"]').setAttribute('content', THEME_COLOR[S.theme] || THEME_COLOR.ivory);
+    if (save) { try { localStorage.setItem('seoga.settings', JSON.stringify(S)); } catch (_) {} }
+    syncSettingsUI();
+  }
+
+  function syncSettingsUI() {
+    $$('.seg button[data-set]').forEach((b) => {
+      const [k, v] = b.dataset.set.split(':');
+      b.classList.toggle('on', String(S[k]) === v);
+    });
+    $('#s-size').value = S.size;
+    $('#o-size').textContent = S.size + 'px';
+    $('#s-ls').value = S.ls;
+    $('#o-ls').textContent = Math.round(S.ls * 100) + '%';
+    $('#s-rate').value = S.rate;
+    $('#o-rate').textContent = S.rate.toFixed(1) + '배';
+    $('#btn-night').classList.toggle('on', S.theme === 'night');
+  }
+
+  // 설정을 바꿔도 읽고 있던 문단이 화면에 그대로 남도록 합니다.
+  function change(fn) {
+    const keep = curIdx;
+    fn();
+    applySettings();
+    if (book) requestAnimationFrame(() => jumpTo(keep));
+  }
+
+  function toggleNight() {
+    change(() => {
+      if (S.theme === 'night') S.theme = dayTheme;
+      else { dayTheme = S.theme; S.theme = 'night'; }
+    });
+  }
+
+  function populateVoices() {
+    if (!('speechSynthesis' in window)) return;
+    const all = speechSynthesis.getVoices();
+    const ko = all.filter((v) => /^ko/i.test(v.lang));
+    const list = ko.length ? ko : all;
+    $('#s-voice').innerHTML = '<option value="">기기 기본 음성</option>' +
+      list.map((v) => `<option value="${esc(v.voiceURI)}">${esc(v.name)} · ${esc(v.lang)}</option>`).join('');
+    $('#s-voice').value = S.voice || '';
+  }
+
+  /* ================= 시스템 TTS (기기 내장 음성 · Web Speech API) ================= */
+  const TTS = {
+    on: false,
+    i: 0,
+    tok: 0,
+    supported: 'speechSynthesis' in window,
+    start(from) {
+      if (!this.supported) { toast('이 기기에서는 음성 읽기를 쓸 수 없어요'); return; }
+      this.stop();
+      this.on = true;
+      this.i = from;
+      syncTtsButton();
+      this.next();
+    },
+    stop() {
+      this.tok++;                               // 이전 발화의 콜백을 무효화
+      this.on = false;
+      if (this.supported) speechSynthesis.cancel();
+      $$('#text .speak').forEach((n) => n.classList.remove('speak'));
+      syncTtsButton();
+    },
+    next() {
+      if (!this.on || !book) return;
+      const bl = book.blocks;
+      while (this.i < bl.length && !bl[this.i].x.trim()) this.i++;
+      if (this.i >= bl.length) { this.stop(); return; }
+      const node = $('#text').children[this.i];
+      $$('#text .speak').forEach((n) => n.classList.remove('speak'));
+      node.classList.add('speak');
+      keepVisible(node);
+      const t = this.tok;
+      const u = new SpeechSynthesisUtterance(bl[this.i].x);
+      u.lang = 'ko-KR';
+      u.rate = S.rate;
+      const voice = S.voice && speechSynthesis.getVoices().find((v) => v.voiceURI === S.voice);
+      if (voice) u.voice = voice;
+      u.onend = () => { if (t === this.tok) { this.i++; this.next(); } };
+      u.onerror = (e) => {
+        if (t === this.tok && !/interrupted|canceled/.test(e.error)) { this.stop(); toast('음성 재생에 문제가 생겼어요'); }
+      };
+      speechSynthesis.speak(u);
+    },
+    toggle() { if (this.on) this.stop(); else this.start(curIdx); }
+  };
+
+  function syncTtsButton() {
+    const b = $('#btn-tts');
+    setIcon(b, TTS.on ? 'stop' : 'speaker');
+    b.classList.toggle('on', TTS.on);
+  }
+
+  function keepVisible(node) {
+    const r = node.getBoundingClientRect();
+    if (r.top < 90 || r.bottom > window.innerHeight * 0.75) {
+      window.scrollTo({ top: window.scrollY + r.top - window.innerHeight * 0.35, behavior: 'smooth' });
+    }
+  }
+
+  /* ================= 메뉴 동작 ================= */
+  function act(name) {
+    switch (name) {
+      case 'library': return showLibrary();
+      case 'toc': return openPanel('toc');
+      case 'open': return $('#file').click();
+      case 'bm': return toggleBookmark();
+      case 'tts': return TTS.toggle();
+      case 'settings': return openPanel('sheet');
+      case 'night': return toggleNight();
+    }
+  }
+
+  function busy(on, msg = '') {
+    $('#busy').hidden = !on;
+    $('#busy-msg').textContent = msg;
+  }
+
+  function toast(msg) {
+    const t = $('#toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toastT);
+    toastT = setTimeout(() => t.classList.remove('show'), 2000);
+  }
+
+  /* ================= 이벤트 연결 ================= */
+  function bindUI() {
+    $('#btn-paste').onclick = openPaste;
+    $('#btn-open-lib').onclick = () => $('#file').click();
+    $('#btn-home').onclick = () => { showView('home'); renderHome(); };
+    $$('#filters button').forEach((b) => { b.onclick = () => { shelfFilter = b.dataset.filter; renderShelf(); }; });
+    $('#home-library').onclick = () => { showView('library'); renderShelf(); };
+    $('#home-paste').onclick = openPaste;
+    $('#home-open').onclick = () => $('#file').click();
+    $('#home-resume').onclick = () => { const id = $('#home-resume').dataset.id; if (id) openBook(id); };
+
+    $('#shelf').addEventListener('click', (e) => {
+      const del = e.target.closest('[data-del]');
+      if (del) { removeBook(del.dataset.del); return; }
+      const item = e.target.closest('.item');
+      if (item) openBook(item.dataset.id);
+    });
+
+    $('#file').addEventListener('change', (e) => {
+      const f = e.target.files && e.target.files[0];
+      e.target.value = '';
+      if (f) importFile(f);
+    });
+
+    const bar = $('#bar');
+    bar.addEventListener('pointerdown', () => showBar());
+    bar.addEventListener('click', (e) => {
+      const b = e.target.closest('[data-act]');
+      if (b) act(b.dataset.act);
+    });
+
+    $('#page').addEventListener('click', (e) => {
+      if (e.target.closest('a, button')) return;
+      if (window.getSelection && String(window.getSelection())) return; // 드래그 선택 중이면 무시
+      toggleBar();
+    });
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    document.addEventListener('visibilitychange', () => { if (document.hidden) persist(); });
+    window.addEventListener('pagehide', persist);
+
+    $('#scrim').onclick = () => closePanels();
+    $$('[data-close]').forEach((b) => { b.onclick = () => closePanels(); });
+    $$('#toc-tabs button').forEach((b) => { b.onclick = () => showTocTab(b.dataset.tab); });
+
+    const jumpFromList = (e) => {
+      const b = e.target.closest('[data-i]');
+      if (!b) return;
+      closePanels();
+      jumpTo(+b.dataset.i, true);
+    };
+    $('#toc-list').addEventListener('click', jumpFromList);
+    $('#bm-list').addEventListener('click', (e) => {
+      const del = e.target.closest('[data-bm-del]');
+      if (del) { removeBookmark(+del.dataset.bmDel); return; }
+      jumpFromList(e);
+    });
+
+    $$('.seg button[data-set]').forEach((b) => {
+      b.onclick = () => {
+        const [k, v] = b.dataset.set.split(':');
+        change(() => { S[k] = v; });
+      };
+    });
+    $('#s-size').oninput = (e) => change(() => { S.size = +e.target.value; });
+    $('#s-ls').oninput = (e) => change(() => { S.ls = +e.target.value; });
+    $('#s-rate').oninput = (e) => { S.rate = +e.target.value; applySettings(); };
+    $('#s-voice').onchange = (e) => { S.voice = e.target.value; applySettings(); };
+
+    $('#paste-cancel').onclick = () => { $('#modal').hidden = true; };
+    $('#paste-ok').onclick = savePaste;
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') { closePanels(); $('#modal').hidden = true; }
+    });
+  }
+
+  /* ================= 시작 ================= */
+  function init() {
+    hydrateIcons();
+    bindUI();
+    applySettings(false);
+    syncTtsButton();
+    populateVoices();
+    if (TTS.supported) speechSynthesis.onvoiceschanged = populateVoices;
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js').catch((err) => console.warn('서비스 워커 등록 실패', err));
+      });
+    }
+    showView('home');
+    renderHome();
+  }
+
+  init();
+})();
+</script>
+<script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}function isInlineMediaSlotElement(node){return !!(node&&node.getAttribute&&node.getAttribute("data-clippy-inline-media-slot")!==null)}function findInlineMediaSlot(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(isInlineMediaSlotElement(node))return node}return null}function readInlineMediaUrl(node){if(!node)return null;return node.getAttribute&&((node.getAttribute("data-clippy-inline-media-url")||node.getAttribute("data-url")||node.getAttribute("data_url")))||node.href||null}function stripHash(url){return String(url).replace(/#.*$/,"")}function urlsMatch(a,b){if(!a||!b)return false;try{return stripHash(new URL(a,loc).href)===stripHash(new URL(b,loc).href)}catch(_){return stripHash(a)===stripHash(b)}}function isFirstPartyReelUrl(value){try{var url=new URL(value,loc);if(url.protocol!=="https:")return false;var host=url.hostname.toLowerCase();var supported=host==="instagram.com"||host.endsWith(".instagram.com")||host==="facebook.com"||host.endsWith(".facebook.com");return supported&&/\/reels?\//i.test(url.pathname)}catch(_){return false}}function isInlineMediaUrlClick(node,href){var slot=findInlineMediaSlot(node);if(!slot)return false;var slotUrl=readInlineMediaUrl(slot);if(slotUrl)return urlsMatch(href,slotUrl);return isFirstPartyReelUrl(href)}function findDataHref(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(node.getAttribute){var href=node.getAttribute("data-href")||node.getAttribute("data-url");if(href)return{href:href,node:node}}}return null}var nativeOpen=window.open;window.open=function(url){if(parent!==window&&typeof url==="string"&&/^https?:\/\//.test(url)){parent.postMessage({type:"ecto:usercontent-link-click",href:url},"*");return null}return nativeOpen?nativeOpen.apply(window,arguments):null};document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;if(parent===window)return;var a=target.closest?target.closest("a[href]"):null;if(a&&a.href&&/^https?:\/\//.test(a.href)&&a.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(a,a.href))return;var productId=extractProductId(target)||extractProductId(a);if(productId){e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*");return}e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:a.href},"*");return}var dataHref=findDataHref(target);if(dataHref&&/^https?:\/\//.test(dataHref.href)&&dataHref.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(dataHref.node,dataHref.href))return;e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:dataHref.href},"*")}},true)})();</script><script>(function(){var FOCUS_TYPE="ecto:artifact-focus-request";var CLOSE_TYPE="ecto:artifact-close-request";function focusArtifactDocument(){var body=document.body;if(!body)return;try{window.focus();}catch(e){}if(!body.hasAttribute("tabindex"))body.setAttribute("tabindex","-1");try{body.focus({preventScroll:true});}catch(e){try{body.focus();}catch(e2){}}}window.addEventListener("message",function(event){if(event.source!==window.parent)return;var data=event.data;if(!data||typeof data!=="object"||data.type!==FOCUS_TYPE)return;if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",focusArtifactDocument,{once:true});return;}focusArtifactDocument();});window.addEventListener("keydown",function(event){if(event.key!=="Escape")return;window.setTimeout(function(){if(event.defaultPrevented)return;window.parent.postMessage({type:CLOSE_TYPE},"*");},0);});})();</script></body>
+</html>
