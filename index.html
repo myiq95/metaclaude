@@ -484,8 +484,19 @@ body[data-theme="night"]{ --accent: #C2B0A0; }
 </style>
 
 <style>
+/* Privacy: hide reading book on home */
 #home-resume{ display:none !important; }
 #home-empty{ display:block !important; }
+/* Fix screen size - illustration not too big, actions always visible */
+#home{ display:flex !important; flex-direction:column !important; min-height:100dvh !important; min-height:100vh !important; }
+#home .home-empty{ flex:1; display:flex !important; flex-direction:column; justify-content:center; margin-top:0 !important; padding: 12px 0 8px; }
+#home .darak-illust{ flex-shrink:0; }
+#home .darak-illust img{ max-width:300px !important; max-height:26vh !important; width:88% !important; margin:0 auto 16px !important; object-fit:cover; }
+#home .home-title{ font-size: clamp(28px, 7.5vw, 36px) !important; line-height:1.25 !important; margin:0 0 10px !important; }
+#home .lede{ font-size:13.5px !important; line-height:1.6 !important; margin:0 0 12px !important; }
+#home .home-actions{ margin-top:auto !important; padding-top:16px !important; padding-bottom: calc(env(safe-area-inset-bottom) + 8px) !important; display:grid !important; grid-template-columns:repeat(3,1fr) !important; border-top:1px solid var(--line) !important; position:relative !important; z-index:2 !important; background: var(--bg); }
+.home-btn{ display:flex !important; flex-direction:column !important; align-items:center !important; gap:8px !important; padding:14px 4px !important; }
+.home-ico{ display:grid !important; place-items:center !important; width:32px !important; height:32px !important; }
 </style>
 
 </head>
@@ -959,17 +970,19 @@ body[data-theme="night"]{ --accent: #C2B0A0; }
 
   /* ================= 초기 화면 ================= */
   /* ================= 초기 화면 ================= */
-  async 
-function renderHome(){
-  const emptyEl = document.getElementById('home-empty');
-  const resumeEl = document.getElementById('home-resume');
-  if(resumeEl) resumeEl.hidden = true;
-  if(emptyEl) emptyEl.hidden = false;
-  const countEl = document.getElementById('home-count');
-  if(countEl){
-    DB.allMeta().then(list=>{ countEl.textContent = list.length ? list.length+'권' : ''; }).catch(()=>{});
+  async function renderHome() {
+    const metas = (await DB.allMeta()).sort((a, b) => (b.lastAt || 0) - (a.lastAt || 0));
+    $('#home-count').textContent = metas.length ? `${metas.length}권` : '';
+    $('#home-empty').hidden = metas.length > 0;
+    const hero = $('#home-resume');
+    if (!metas.length) { hero.hidden = true; return; }
+    const last = metas[0];
+    const pct = Math.round((last.pct || 0) * 100);
+    hero.dataset.id = last.id;
+    $('#resume-cover').innerHTML = coverHTML(last, 1.3);
+    $('#resume-meta').textContent = pct ? `${pct}% 읽었어요` : '아직 읽지 않았어요';
+    hero.hidden = false;
   }
-}
 
   async function removeBook(id) {
     const m = await DB.getMeta(id);
